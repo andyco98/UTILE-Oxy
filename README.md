@@ -1,6 +1,6 @@
 # *UTILE-Oxy* - Deep Learning to Automate Video Analysis of Bubble Dynamics in Proton Exchange Membrane Electrolyzers
 
-![](https://github.com/andyco98/UTILE-Oxy/blob/main/workflow.png)
+![](https://github.com/andyco98/UTILE-Oxy/blob/main/images/workflow.png)
 
 
 We present  an automated workflow using deep learning for the analysis of videos containing oxygen bubbles in PEM electrolyzers by: 1. preparing annotated dataset and training models in order to conduct semantic seg- mentation of bubbles and 2. automating the extraction of bubble properties for further distribution analysis.
@@ -13,7 +13,7 @@ This repository contains the Python implementation of the UTILE-Oxy software for
 
 The models that we present in this work are trained on a specific use-case scenario of interest of oxygen bubble evolution videos of transparent cells. It is possible to fine-tune, re-train or employ another model suitable for your individual case if your data has a strong visual deviation from the presented data here, which was recorded and it is shown as following:
 
-![](https://github.com/andyco98/UTILE-Oxy/blob/main/workflow.png)
+![](https://github.com/andyco98/UTILE-Oxy/blob/main/images/figexperiment.png)
 
 ## Model's benchmark
 In our study, we trained several models to compare their prediction performance on unseen data. We trained specificalley three different models on the same dataset composed by :
@@ -30,11 +30,11 @@ And we obtained the following performance results:
 | Attention U-Net                 | 95             | 75         | 84           |
 
 
-Since the F1-Scores are similar a visual inspection to find the best perfomring model was carried out:
+Since the F1-Scores are similar a visual inspection was carried out to find the best performing model :
 
-![](https://github.com/andyco98/UTILE-Oxy/blob/main/workflow.png)
+![](https://github.com/andyco98/UTILE-Oxy/blob/main/images/benchmark.png)
 
-But even clearer is the visual comparision of the runnning videos:
+But even clearer is the visual comparision of the running videos:
 
 ![](https://github.com/andyco98/UTILE-Oxy/blob/main/workflow.png)
 
@@ -42,9 +42,15 @@ But even clearer is the visual comparision of the runnning videos:
 
 ### Time-resolved bubble ratio computation and bubble coverage distribution
 
+![](https://github.com/andyco98/UTILE-Oxy/blob/main/images/timeresolved.png)
+
 ### Bubble position probability density map
 
+![](https://github.com/andyco98/UTILE-Oxy/blob/main/images/heatmaps.png)
+
 ### Individual bubble shape analysis
+
+![](https://github.com/andyco98/UTILE-Oxy/blob/main/images/individualcorrect.png)
 
 ## Installation
 
