@@ -21,12 +21,14 @@ In our study, we trained several models to compare their prediction performance 
 - U-Net 2D with a ResNeXt 101 backbone 
 - Attention U-Net
 
-And we obtained the following preformance results:
+And we obtained the following performance results:
 
-| Model | Precision [%] | Recall  [%] | F1-Score  [%] |
-| U-Net 2D | 81 | 89 | 85 |
-| U-Net with ResNeXt101 backbone | 95 | 78 | 86 |
-| Attention U-Net | 95 | 75 | 84 |
+| Model                           | Precision [%] | Recall [%] | F1-Score [%] |
+|---------------------------------|----------------|------------|--------------|
+| U-Net 2D                        | 81             | 89         | 85           |
+| U-Net with ResNeXt101 backbone  | 95             | 78         | 86           |
+| Attention U-Net                 | 95             | 75         | 84           |
+
 
 Since the F1-Scores are similar a visual inspection to find the best perfomring model was carried out:
 
