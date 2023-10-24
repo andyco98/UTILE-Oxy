@@ -36,7 +36,7 @@ Since the F1-Scores are similar a visual inspection was carried out to find the 
 
 But even clearer is the visual comparision of the running videos:
 
-![](https://github.com/andyco98/UTILE-Oxy/blob/main/workflow.png)
+![](https://github.com/andyco98/UTILE-Oxy/blob/main/images/video_results.gif)
 
 ## Extracted features
 
