@@ -53,8 +53,23 @@ But even clearer is the visual comparision of the running videos:
 ![](https://github.com/andyco98/UTILE-Oxy/blob/main/images/individualcorrect.png)
 
 ## Installation
-Coming soon...
+In order to run the actual version of the code, the following steps need to be done:
+- Clone the repository
+- Create a new environment using Anaconda using Python 3.8 or superior
+- Pip install the jupyter notebook library
+
+    ```
+    pip install notebook
+    ```
+- From your Anaconda console open jupyter notebook (just tip "jupyter notebook" and a window will pop up)
+- Open the /UTILE-Oxy/UTILE-Oxy_prediction.ipynb file from the jupyter notebook directory
+- Further instructions on how to use the tool are attached to the code with examples in the juypter notebook
 
 ## Dependencies
-Coming soon...
+The following libraries are needed to run the program:
+
+  ```
+   pip install opencv-python, numpy, patchify, pillow, segmentation_models, keras, tensorflow, matplotlib, scikit-learn, pandas
+
+   ```
 ### Notes
