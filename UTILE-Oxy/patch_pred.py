@@ -6,6 +6,7 @@ os.environ["SM_FRAMEWORK"] = "tf.keras"
 import segmentation_models as sm
 from keras.models import load_model
 import imageio
+import re
 
 def prediction_patch(image_path, model_path, mask_folder):
     patch_size = 256
@@ -65,13 +66,23 @@ def prediction_nopatch(image_path, model_path, mask_folder):
         im.save(mask_folder + f"/pred_{name}.png")
     return
 
+
+def numerical_sort(value):
+    """
+    Helper function to extract numbers from the filename for sorting.
+    """
+    numbers = re.compile(r'(\d+)')
+    parts = numbers.split(value)
+    parts[1::2] = map(int, parts[1::2])
+    return parts
+
 def gif_creation(input_folder, output_filename, frame_duration):
     images = []
-    # Ensure the files are sorted correctly
-    file_names = sorted([img for img in os.listdir(input_folder) if img.endswith(".png") or img.endswith(".tif") or img.endswith(".jpg") or img.endswith(".tiff")])
+    images_paths = [os.path.join(input_folder, file) for file in os.listdir(input_folder) if file.lower().endswith(('.tif','.tiff','.png', '.jpg', '.jpeg', '.bmp'))]
+    images_paths.sort(key=numerical_sort)  # Sort files by name
 
-    for filename in file_names:
+    for filename in images_paths:
         file_path = os.path.join(input_folder, filename)
-        images.append(imageio.imread(file_path))
+        images.append(imageio.imread(filename))
 
     imageio.mimsave(output_filename, images, duration=frame_duration)
