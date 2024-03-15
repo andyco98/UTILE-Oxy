@@ -5,6 +5,7 @@ import os
 os.environ["SM_FRAMEWORK"] = "tf.keras"
 import segmentation_models as sm
 from keras.models import load_model
+import imageio
 
 def prediction_patch(image_path, model_path, mask_folder):
     patch_size = 256
@@ -63,3 +64,14 @@ def prediction_nopatch(image_path, model_path, mask_folder):
         im = Image.fromarray(test_prediction1*255)
         im.save(mask_folder + f"/pred_{name}.png")
     return
+
+def gif_creation(input_folder, output_filename, frame_duration):
+    images = []
+    # Ensure the files are sorted correctly
+    file_names = sorted([img for img in os.listdir(input_folder) if img.endswith(".png") or img.endswith(".tif") or img.endswith(".jpg") or img.endswith(".tiff")])
+
+    for filename in file_names:
+        file_path = os.path.join(input_folder, filename)
+        images.append(imageio.imread(file_path))
+
+    imageio.mimsave(output_filename, images, duration=frame_duration)
