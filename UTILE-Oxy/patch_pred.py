@@ -6,7 +6,7 @@ os.environ["SM_FRAMEWORK"] = "tf.keras"
 import segmentation_models as sm
 from keras.models import load_model
 
-def prediction(image_path, model_path, mask_folder):
+def prediction_patch(image_path, model_path, mask_folder):
     patch_size = 256
     n_classes = 1
 
@@ -39,4 +39,27 @@ def prediction(image_path, model_path, mask_folder):
         recon_img = unpatchify(predicted_patches_reshaped, (512,512))
         recon_img = Image.fromarray(np.uint8(recon_img*255)).save(mask_folder + f"/pred_{name}.png")
 
+    return
+
+
+def prediction_nopatch(image_path, model_path, mask_folder):
+
+    BACKBONE1 = 'resnext101'
+    preprocess_input1 = sm.get_preprocessing(BACKBONE1)
+
+    model1 = load_model(model_path, compile=False)
+
+    test_list = os.listdir(image_path)
+
+    for name in test_list:
+        patch_list = []  
+        img = Image.open(image_path+name).convert("L").resize((512, 512))
+        array = np.array(img)
+        print(array.shape)
+        single_patch = np.stack((array,)*3, axis=-1)
+        test_img_input=np.expand_dims(single_patch, 0)
+        #test_img_input = preprocess_input1(test_img_input)
+        test_prediction1 = (model1.predict(test_img_input)[0,:,:,0] > 0.5).astype(np.uint8)
+        im = Image.fromarray(test_prediction1*255)
+        im.save(mask_folder + f"/pred_{name}.png")
     return
