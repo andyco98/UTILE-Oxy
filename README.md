@@ -5,7 +5,8 @@
 
 We present  an automated workflow using deep learning for the analysis of videos containing oxygen bubbles in PEM electrolyzers by 1. preparing an annotated dataset and training models in order to conduct semantic segmentation of bubbles and 2. automating the extraction of bubble properties for further distribution analysis.
 
-The publication [UTILE-Oxy - Deep Learning to Automate Video Analysis of Bubble Dynamics in Proton Exchange Membrane Electrolyzers]() will be available soon!
+The publication [UTILE-Oxy - Deep Learning to Automate Video Analysis of Bubble Dynamics in Proton Exchange Membrane Electrolyzers](https://pubs.rsc.org/en/content/articlelanding/2024/cp/d3cp05869g) is available in an open access fashion on the journal PCCP for further information!
+
 
 ## Description
 This project focuses on the deep learning-based automatic analysis of polymer electrolyte membrane water electrolyzers (PEMWE) oxygen evolution videos. 
