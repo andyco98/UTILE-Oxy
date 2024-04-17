@@ -11,9 +11,9 @@ import csv
 # os.makedirs(output_folder, exist_ok=True)
 
 # Extract ROIs from all masks in a folder
-experiment = "NameYourExperiment"  #GIve a name or ID to your experiment
-mask_folder = "/p/home/jusers/colliard1/juwels/fzj-mac/Andre/Bubbles/UNet/RodenFullDataset/18mv_pred/"
-os.makedirs(mask_folder, exist_ok=True)  # Ensure mask folder exists
+# experiment = "NameYourExperiment"  #GIve a name or ID to your experiment
+# mask_folder = "/p/home/jusers/colliard1/juwels/fzj-mac/Andre/Bubbles/UNet/RodenFullDataset/18mv_pred/"
+# os.makedirs(mask_folder, exist_ok=True)  # Ensure mask folder exists
 
 
 # Function to calculate area and equivalent diameter
