@@ -21,7 +21,9 @@ def prediction_patch(image_path, model_path, mask_folder):
 
     for name in test_list:
         patch_list = []  
-        img = Image.open(image_path+name).convert("L").resize((512, 512))
+        img = Image.open(image_path+name).convert("L")
+        w,h = img.size
+        img = img.resize((512,512))
         array = np.array(img)
         print(array.shape)
         patches = patchify(array, (256,256), step=256)
@@ -39,7 +41,7 @@ def prediction_patch(image_path, model_path, mask_folder):
         predicted_patches_reshaped = np.reshape(test_img, (patches.shape[0], patches.shape[1], 256, 256) )
         print(predicted_patches_reshaped.shape)
         recon_img = unpatchify(predicted_patches_reshaped, (512,512))
-        recon_img = Image.fromarray(np.uint8(recon_img*255)).save(mask_folder + f"/pred_{name}.png")
+        recon_img = Image.fromarray(np.uint8(recon_img*255)).resize((w,h)).save(mask_folder + f"/pred_{name}.png")
 
     return
 
@@ -55,14 +57,16 @@ def prediction_nopatch(image_path, model_path, mask_folder):
 
     for name in test_list:
         patch_list = []  
-        img = Image.open(image_path+name).convert("L").resize((512, 512))
+        img = Image.open(image_path+name).convert("L")
+        w,h = img.size
+        img = img.resize((512,512))
         array = np.array(img)
         print(array.shape)
         single_patch = np.stack((array,)*3, axis=-1)
         test_img_input=np.expand_dims(single_patch, 0)
         #test_img_input = preprocess_input1(test_img_input)
         test_prediction1 = (model1.predict(test_img_input)[0,:,:,0] > 0.5).astype(np.uint8)
-        im = Image.fromarray(test_prediction1*255)
+        im = Image.fromarray(test_prediction1*255).resize((w,h))
         im.save(mask_folder + f"/pred_{name}.png")
     return
 
