@@ -4,7 +4,7 @@ import os
 from PIL import Image
 import re
 from scipy.stats import norm
-
+import cv2
 
 def calculate_bubble_area(image_path):
     """
@@ -87,3 +87,32 @@ def time_resolved_BAD(directory_path):
     plt.savefig("./time_resolved_BAD.png")
     plt.show()
 
+def calculate_area_ratio(image_path):
+    # Read the image
+    image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
+    if image is None:
+        print(f"Error: Could not read image {image_path}.")
+        return
+
+    # Ensure the image is binary
+    _, binary_image = cv2.threshold(image, 127, 255, cv2.THRESH_BINARY)
+
+    # Calculate the total number of pixels
+    total_pixels = binary_image.size
+
+    # Calculate the number of white pixels (channels)
+    white_pixels = cv2.countNonZero(binary_image)
+
+    # Calculate the number of black pixels (background)
+    black_pixels = total_pixels - white_pixels
+
+    # Calculate the ratio of white to black pixels
+    if black_pixels == 0:
+        ratio = float('inf')  # Avoid division by zero
+    else:
+        ratio = white_pixels / (black_pixels + white_pixels)
+
+    print(f"Total pixels: {total_pixels}")
+    print(f"White pixels (channels): {white_pixels}")
+    print(f"Black pixels (background): {black_pixels}")
+    print(f"Ratio of white to total pixels: {ratio:.2f}")
