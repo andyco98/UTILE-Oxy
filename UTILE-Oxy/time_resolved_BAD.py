@@ -5,6 +5,7 @@ from PIL import Image
 import re
 from scipy.stats import norm
 import cv2
+import csv
 
 def calculate_bubble_area(image_path):
     """
@@ -86,6 +87,25 @@ def time_resolved_BAD(directory_path):
     plt.tight_layout()
     plt.savefig("./time_resolved_BAD.png")
     plt.show()
+
+    headers = ["Bubble Ratio"]
+
+
+    data = list(zip(areas))
+
+
+    # Specify the filename
+    filename = f"./outputTimeResolvedRatio_csv.csv"
+
+    # Write to CSV
+    with open(filename, 'w', newline='') as csvfile:
+        csvwriter = csv.writer(csvfile)
+        
+        # Write the headers
+        csvwriter.writerow(headers)
+        
+        # Write the data
+        csvwriter.writerows(data)
 
 def calculate_area_ratio(image_path):
     # Read the image
