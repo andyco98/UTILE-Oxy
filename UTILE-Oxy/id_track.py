@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import os
+import csv
 
 def channel_recognition(full_img):
     img = cv2.imread(full_img, cv2.IMREAD_GRAYSCALE)
@@ -156,16 +157,34 @@ def channel_analysis(full_img, folder_path):
         velocities, bubble_tracks, mean = track_bubbles(frames)
         print(f'Channel {ch_num} mean velocity: {mean} px/frame ')
         ch_mean.append(mean)
-        visualize_tracking(frames, bubble_tracks)
+        #visualize_tracking(frames, bubble_tracks)
         ch_num += 1
     
     print(f'Mean cell velocity: {np.mean(ch_mean)} px/frame')
+    headers = ["Bubble velocity [px/frame]"]
+
+
+    data = list(zip(ch_mean))
+
+
+    # Specify the filename
+    filename = f"./bubblevelocity_csv.csv"
+
+    # Write to CSV
+    with open(filename, 'w', newline='') as csvfile:
+        csvwriter = csv.writer(csvfile)
+        
+        # Write the headers
+        csvwriter.writerow(headers)
+        
+        # Write the data
+        csvwriter.writerows(data)
 
 # Load frames from folder
-#folder_path = f'./1Acm2_10mlmin/links_1'  # Change to your folder path
-#full_img = './FullChannel512.png'
+# folder_path = f'./1Acm2_10mlmin/links_1'  # Change to your folder path
+# full_img = './FullChannel512.png'
 
-#channel_analysis(full_img, folder_path)
+# channel_analysis(full_img, folder_path)
 
 # Track bubbles and calculate velocities
 #velocities, mean = track_bubbles(frames)
