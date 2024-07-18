@@ -1,0 +1,77 @@
+import numpy as np
+import tifffile
+import os
+from scipy.ndimage import label, generate_binary_structure
+from skimage.color import label2rgb
+from PIL import Image
+
+def label_bubbles(volume, bubble_class=255):
+    # Apply labeling to the bubble_class within the volume
+    binary_bubbles = volume == bubble_class
+    structure = generate_binary_structure(3, 3)
+    labeled_volume, num_features = label(binary_bubbles, structure=structure)
+    return labeled_volume, num_features
+
+def colorize_labels(labeled_volume):
+    # Assign distinct colors to each label
+    max_label = labeled_volume.max()
+    colors = np.random.randint(0, 255, size=(max_label + 1, 3), dtype=np.uint8)
+    colors[0] = [0, 0, 0]  # Keep the background black
+    colorized_volume = colors[labeled_volume]
+    return colorized_volume
+
+def save_slices(volume, output_dir):
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+    
+    for i in range(volume.shape[0]):
+        slice_image = volume[i]
+        slice_path = os.path.join(output_dir, f'slice_{i:04d}.tiff')
+        tifffile.imwrite(slice_path, slice_image)
+
+def process_and_save_slices(input_file_path, output_dir):
+    # Read the TIFF stack and convert it to a numpy array
+    volume = tifffile.imread(input_file_path)
+
+    # Label the bubbles
+    labeled_volume, num_features = label_bubbles(volume)
+    print(f"Num Features: {num_features}")
+
+    # Colorize the labels
+    colorized_volume = colorize_labels(labeled_volume)
+
+    # Save the colorized labeled slices
+    save_slices(colorized_volume, output_dir)
+
+def stack_tiff_files(input_folder, output_file):
+    # Get a list of TIFF files in the input folder
+    tiff_files = [f for f in os.listdir(input_folder) if f.endswith('.tiff') or f.endswith('.tif')]
+    
+    if not tiff_files:
+        print("No TIFF files found in the input folder.")
+        return
+
+    # Sort the files to ensure they are stacked in the correct order
+    tiff_files.sort()
+
+    # Open the first image and create a list to store the rest of the images
+    img_list = []
+    with Image.open(os.path.join(input_folder, tiff_files[0])) as img:
+        for tiff_file in tiff_files[1:]:
+            img_list.append(Image.open(os.path.join(input_folder, tiff_file)))
+        
+        # Save the first image with the additional images appended as frames
+        img.save(output_file, save_all=True, append_images=img_list)
+    
+    print(f"Stacked {len(tiff_files)} TIFF files into {output_file}")
+
+# Define the file paths
+input_file_path = "inputpath"
+output_dir = "outputdirectory"
+
+# Process the input file and save the labeled slices
+process_and_save_slices(input_file_path, output_dir)
+
+# Stack the saved slices into a single TIFF file
+output_file = os.path.join(output_dir, "outputfilename")
+stack_tiff_files(output_dir, output_file)
