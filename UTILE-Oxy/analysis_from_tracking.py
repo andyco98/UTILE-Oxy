@@ -25,7 +25,7 @@ def plot_new_bubbles_vs_time(csv_path, voltage):
 
 
     # Derive case study name from voltage
-    case_study = voltage
+   
 
     # Create a folder for analysis plots in the same directory as the CSV file
     parent_directory = Path(csv_path).parent
@@ -103,7 +103,7 @@ def plot_merging_events_vs_time(csv_path, voltage):
     """
     
     # Derive case study name from voltage
-    case_study = voltage
+    
 
     # Create a folder for analysis plots in the same directory as the CSV file
     parent_directory = Path(csv_path).parent
@@ -180,7 +180,7 @@ def generate_heatmap(csv_path, voltage):
         voltage (str): Voltage level associated with the dataset (e.g., "1500mV").
     """
 
-    case_study = voltage 
+     
     
     parent_directory = Path(csv_path).parent
     analysis_save_path = parent_directory / f"Analysis Plots for {case_study}"
@@ -274,7 +274,7 @@ def generate_merging_heatmap(csv_path, voltage):
         csv_path (str): Path to the CSV file containing tracking data.
         voltage (str): Voltage level associated with the dataset (e.g., "1500mV").
     """
-    case_study = voltage
+    
 
     parent_directory = Path(csv_path).parent
     analysis_save_path = parent_directory / f"Analysis Plots for {case_study}"
