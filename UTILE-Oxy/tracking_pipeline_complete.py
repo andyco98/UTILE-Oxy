@@ -115,6 +115,7 @@ def tracking_bubbles(input_mask_folder, case_study):
     os.remove(step1)
     os.remove(step2)
     print(f"Intermediate files are cleaned")
+    return output_tiff_stack_path, combined_csv_path
     
     
 
