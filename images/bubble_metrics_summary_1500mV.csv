@@ -1,0 +1,12 @@
+Metric,Value
+Singular Avg Total Distance (Pixels),7.303635458668022
+Singular Avg Displacement (Pixels),1.0133165656897065
+Singular Avg Velocity (Pixels/Frame),0.5023191425356354
+Merged Avg Total Distance (Pixels),46.523357595475886
+Merged Avg Displacement (Pixels),12.11688182223616
+Merged Avg Velocity (Pixels/Frame),1.0441555283293826
+"Average New Bubble Size (All Bubbles, Pixels)",328.76992670231226
+Average Initial Bubble Size for Moving Bubbles (Pixels),66.57986111111111
+Average Final Bubble Size of Moving Bubbles (Pixels),100.94791666666667
+Average Growth Rate of Moving Bubbles (%),817.5078284258263
+Average Displacement of Moving Bubbles (Pixels),8.883412256700325

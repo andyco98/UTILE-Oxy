@@ -53,6 +53,45 @@ But even clearer is the visual comparison of the running videos:
 
 ![](https://github.com/andyco98/UTILE-Oxy/blob/main/images/individualcorrect.png)
 
+# *NEW!* UTILE-Oxy Tunnel Vision 3D Spatiotemporal Tracking is Available
+
+With the use of image registration techniques, the extracted segmentation masks are spatiotemporally connected, augmented into a 3D volume and individual bubbles are tracked. 
+
+This opens up new analysis possibilities that weren't available before. Here are some examples:
+
+### Accumulated count of newly emerged bubbles over time
+
+![](https://github.com/alpcanaras/UTILE-Oxy-ALP-FORKED/blob/main/images/New%20Bubbles%20vs.%20Time%201500mV.png)
+
+### Accumulated count of bubble coalescence events
+
+![](https://github.com/alpcanaras/UTILE-Oxy-ALP-FORKED/blob/main/images/Merge%20Events%20vs.%20Time%201500mV.png)
+
+### Denisty map for newly emerging bubble locations
+
+![](https://github.com/alpcanaras/UTILE-Oxy-ALP-FORKED/blob/main/images/Bubble%20Emerging%20Points%20Heatmap%20for%201500mV.png)
+
+### Density map for bubble coalescence locations
+
+![](https://github.com/alpcanaras/UTILE-Oxy-ALP-FORKED/blob/main/images/Bubble%20Merging%20Points%20Density%20Map%20for%201500mV.png)
+
+### Bubble trajectory analysis and mapping
+
+![](https://github.com/alpcanaras/UTILE-Oxy-ALP-FORKED/blob/main/images/trajectory_1500mV_start_end_withavg_and_std_velocity.png)
+
+### Bubble movement metrics extraction
+
+This metrics are calculated and extracted separately for singular (never merging) and merge (that are a results of a coalescence) bubbles and written into a .csv file.
+
+![](https://github.com/alpcanaras/UTILE-Oxy-ALP-FORKED/blob/main/images/Metrics%20CSV.png)
+
+### Bubble coverage lifecycle analysis
+
+This denotes the distribution of coverage duration for related bubbles throughout the video, indicating the time spent in the flow field.
+
+![](https://github.com/alpcanaras/UTILE-Oxy-ALP-FORKED/blob/main/images/lifecycle_histogram_1500mV.png)
+
+
 ## Installation
 In order to run the actual version of the code, the following steps need to be done:
 - Clone the repository
