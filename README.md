@@ -109,7 +109,7 @@ In order to run the actual version of the code, the following steps need to be d
 The following libraries are needed to run the program:
 
   ```
-   pip install opencv-python numpy patchify pillow segmentation_models keras tensorflow==2.13.1 matplotlib scikit-learn pandas
+   pip install opencv-python numpy patchify pillow segmentation_models keras tensorflow==2.13.1 matplotlib scikit-learn pandas seaborn tifffile scipy scikit-image pathlib
 
    ```
 ### Notes
